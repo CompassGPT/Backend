@@ -48,7 +48,13 @@ USER nestjs
 EXPOSE 3000
 
 # Migration and startup entrypoint
-RUN echo '#!/bin/sh\nset -e\necho "Running Prisma migrations..."\nnode -e "const {PrismaClient} = require(\"@prisma/client\"); const prisma = new PrismaClient(); (async () => { try { await prisma.$executeRawUnsafe(\"SELECT 1\"); console.log(\"Database connected\"); } catch(e) { console.error(\"Database not ready, continuing anyway\"); } finally { await prisma.$disconnect(); } })()" || true\necho "Starting application..."\nnode dist/main\n' > /app/start.sh && chmod +x /app/start.sh
+RUN echo '#!/bin/sh' \
+    '\nset -e' \
+    '\necho "Running Prisma migrations..."' \
+    '\nnode -e "const {PrismaClient} = require(\\\"@prisma/client\\\"); const prisma = new PrismaClient(); (async () => { try { await prisma.$executeRawUnsafe(\\\"SELECT 1\\\"); console.log(\\\"Database connected\\\"); } catch(e) { console.error(\\\"Database not ready, continuing anyway\\\"); } finally { await prisma.$disconnect(); } })()" || true' \
+    '\necho "Starting application..."' \
+    '\nnode dist/main\n' \
+    > /app/start.sh && chmod +x /app/start.sh
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
