@@ -54,6 +54,7 @@ export class ModuleRepository implements IModuleRepository {
     return {
       id: mod.id,
       name: mod.name,
+      shortDescription: mod.shortDescription ?? '',
       description: mod.description ?? '',
       content: mod.content ?? '',
       level: mod.level,
@@ -120,6 +121,7 @@ export class ModuleRepository implements IModuleRepository {
     return {
       id: created.id,
       name: created.name,
+      shortDescription: created.shortDescription ?? '',
       description: created.description ?? '',
       content: created.content ?? '',
       level: created.level,

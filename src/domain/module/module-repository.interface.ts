@@ -1,7 +1,7 @@
 import {
   Module,
-  moduleDetail,
-  createModule,
+  ModuleDetail,
+  CreateModule,
 } from '@/domain/module/module.model';
 export interface IModuleRepository {
   getAllModules(): Promise<Module[]>;
