@@ -1,7 +1,6 @@
 import { RequireAuth } from '../decorators/auth.decorator';
 import { SessionGuard } from '../guards/session.guard';
 import {
-  BadRequestException,
   ParseIntPipe,
   Controller,
   HttpStatus,
@@ -16,13 +15,12 @@ import {
 } from '@nestjs/common';
 
 // -- imports for modules --
-import { IModuleService } from '@/application/ports/module.port';
-import { moduleDetail, Module } from '@/domain/module/module.model';
-import { ModuleDetail, Module } from '@/domain/module/module.model';
-import { Location } from '@/domain/location/location.model';
 import { CreateModuleTagDto } from '@/presentation/dtos/moduleTag.dto';
+import { ModuleDetail, Module } from '@/domain/module/module.model';
+import { IModuleService } from '@/application/ports/module.port';
 import { CreateModuleDTO } from '@/presentation/dtos/module.dto';
 import { ModuleTag } from '@/domain/moduletag/moduletag.model';
+import { Location } from '@/domain/location/location.model';
 
 @Controller('modules')
 @UseGuards(SessionGuard)
